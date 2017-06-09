@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Link } from 'react-router-dom';
-// import './navbar.scss'
+import '../styles/navbar.css'
 
 class Navbar extends Component {
 

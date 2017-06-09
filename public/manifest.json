@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Snooz",
+  "name": "Snooz - a New Way ToDo",
   "icons": [
     {
       "src": "favicon.ico",
