@@ -1,4 +1,28 @@
 .navbar {
   height:10vh;
-  background-color: #9d1515;
+  /*background-color: #9d1515;*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  transition: all 300ms;
+  position: fixed;
+  width: 100vw;
+  z-index: 500;
+}
+.navbar.scrolled {
+  background: #9d1515;
+}
+.navbar.scrolling {
+  background: rgba(100, 100, 100, .5);
+}
+
+.links {
+  min-width: 14em;
+}
+
+a {
+  text-decoration: none;
+  color: #3c3c3c;
+  margin-right: 1.5rem;
 }
