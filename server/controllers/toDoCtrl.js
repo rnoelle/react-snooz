@@ -5,8 +5,10 @@ const mongoose = require('mongoose')
 module.exports = {
 
   addToDo(req, res) {
+    req.body.date_created = new Date;
+    req.body.snoozes = [];
     new ToDo(req.body).save((err, ToDo) => {
-      if (err) return res.status(500).send(err);
+      if (err) {console.log(err);return res.status(500).send(err);}
       res.status(200).send(ToDo);
     })
   }

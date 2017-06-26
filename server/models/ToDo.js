@@ -2,11 +2,13 @@ const mongoose = require('mongoose')
     , Schema = mongoose.Schema
     , ObjectId = Schema.Types.ObjectId;
 
-const ToDo = Schema({
-  _id   : Number,
+const toDoSchema = Schema({
   text  : String,
+  date_created : {type: Date},
+  snoozes : [{type: Date}],
   _user : {type: ObjectId, ref: 'User'},
-  snoozes : [{type: Date}]
+  _collection : {type: ObjectId, ref: 'Collection'}
 });
 
+const ToDo = mongoose.model('ToDo', toDoSchema);
 module.exports = ToDo;

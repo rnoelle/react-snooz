@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
+    , Collection = require('./Collection')
     , Schema = mongoose.Schema;
 
 const User = Schema({
-  _id : Number,
   display_name : String,
-  email : String
+  email : String,
+  collections : [{type: Collection}]
 })
 
 module.exports = mongoose.model('User', User);
