@@ -1,0 +1,19 @@
+{
+  "tasks": [
+    {
+      "user_id": 23,
+      "text": "Finish add task functionality",
+      "id": 1
+    },
+    {
+      "user_id": 23,
+      "text": "Add a tasklist to show tasks",
+      "id": 2
+    },
+    {
+      "user_id": 23,
+      "text": "Add a task",
+      "id": 3
+    }
+  ]
+}

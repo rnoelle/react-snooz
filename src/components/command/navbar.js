@@ -32,7 +32,7 @@ class Navbar extends Component {
 
 
   render() {
-    const { match, location, history } = this.props;
+    const { location } = this.props;
     let fill = location.pathname === '/' ? this.state.className : 'scrolled';
 
     return (
