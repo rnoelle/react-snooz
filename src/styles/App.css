@@ -19,11 +19,19 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	color: rgb(52, 52, 52);
+}
+.page-content {
+  min-height: 100vh;
+	position: relative;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
+}
+div, section, main, nav {
+	box-sizing: border-box;
 }
 body {
 	line-height: 1;
@@ -56,12 +64,12 @@ p, input, li {
 
 button {
   padding: .75em 1em;
-  background: #9d1515;
+  background: #FF6B35;
   color: white;
   border: none;
   border-radius: 2px;
 }
 button:hover {
-  background: #8a1515;
+  background: #B23D13;
   cursor: pointer;
 }

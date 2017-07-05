@@ -1,6 +1,6 @@
 .splash {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background: url('/splash.jpg');
   background-size: cover;
   position: relative;
@@ -20,4 +20,85 @@
 }
 button {
   font-size: 1.5rem;
+}
+main {
+  /*max-width: 1400px;*/
+  margin-left: auto;
+  margin-right: auto;
+}
+section.three-boxes {
+  padding: 5vw;
+  text-align: center;
+  position: relative;
+  left: 0;
+  width: calc(100vw - (100vw - 100%));
+  overflow: hidden;
+}
+#diag {
+  position: absolute;
+  background: #efefef;
+  height: 85vh;
+  width: 140vh;
+  right: -45vh;
+  top: 27vh;
+  z-index: -10;
+  transform: rotate(-35deg);
+}
+#diag2 {
+  position: absolute;
+  background: #fbfbfb;
+  height: 685vh;
+  width: 640vh;
+  right: -45vh;
+  top: -20vh;
+  z-index: -11;
+  transform: rotate(35deg);
+}
+.three-boxes-container {
+  display: flex;
+  justify-content: center;
+}
+.three-boxes h1, .cta2 h1 {
+  font-size: 2.5rem;
+}
+.box {
+  padding: 1em;
+  margin: .75rem;
+  width: 20vw;
+  min-width: 200px;
+}
+.box h2 {
+  color: #87e75b;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+.box p {
+  font-size: 1.3rem;
+}
+.cta2 {
+  height: 28rem;
+}
+.cta2 h1 {
+  margin-bottom: 1.5rem;
+}
+.left-chev {
+  background: url('../img/ben-white-148430.jpg');
+  background-size: cover;
+  -moz-transform: scaleX(-1);
+   -o-transform: scaleX(-1);
+   -webkit-transform: scaleX(-1);
+   transform: scaleX(-1);
+   filter: FlipH;
+   -ms-filter: "FlipH";
+  float: left;
+  height: 100%;
+  width: 40%;
+  -webkit-clip-path: polygon(25% 0%, 100% 1%, 100% 100%, 25% 100%, 0% 50%);
+  clip-path: polygon(25% 0%, 100% 1%, 100% 100%, 25% 100%, 0% 50%);
+  margin-right: 15vw;
+}
+.left-chev + div {
+  height: 100%;
+  padding-top: 11rem;
 }

@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './styles/App.css';
 
-import Home from './view/home';
-import Profile from './view/profile';
-import Navbar from './command/navbar';
+import Home from './components/view/home';
+import Profile from './components/view/profile';
+import Dashboard from './components/view/dashboard';
+import Navbar from './components/command/navbar';
+import Footer from './components/command/footer';
 
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="page-content">
         <Navbar></Navbar>
-        <Router>
-
-          <Switch>
             <Route exact path="/" component={Home}/>
-            <Route path="/profile" component={Profile}/>
-          </Switch>
-        </Router>
+            <Route exact path="/profile" component={Profile}/>
+            <Route exact path="/dashboard" component={Dashboard}/>
+        <Footer></Footer>
       </div>
     );
   }

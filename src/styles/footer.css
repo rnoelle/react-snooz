@@ -1,0 +1,20 @@
+footer {
+  background: #3c3c3c;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5rem;
+  box-sizing: border-box;
+}
+footer li, footer h5 {
+  color: #767676;
+}
+
+footer section{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+#copyright {
+  margin: auto;
+}
