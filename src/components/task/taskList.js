@@ -1,11 +1,11 @@
 import React from 'react';
 
-export default function TaskList({tasks}) {
+function TaskList({tasks}) {
 
     if (tasks) {
        tasks = tasks.map(el => {
         return (
-          <li key={el.id}>el.text</li>
+          <li key={el.id}>{el.text}</li>
         )
       })
     }
@@ -15,3 +15,5 @@ export default function TaskList({tasks}) {
       </ul>
     )
 }
+
+export default TaskList;
