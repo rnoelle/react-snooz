@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { postTask } from '../../services/taskApi';
+import { postTask, getTasks } from '../../services/taskApi';
 
 export default class AddTodo extends Component {
   constructor() {
@@ -18,13 +18,14 @@ export default class AddTodo extends Component {
     })
   }
 
-  handleClick(e) {
+  handleSubmit(e) {
     e.preventDefault();
     let newTask = {
       user_id: 23,
       text: this.state.textInput
     }
     postTask(newTask);
+    getTasks()
     this.setState({
       textInput: ''
     })
@@ -32,9 +33,9 @@ export default class AddTodo extends Component {
 
   render() {
     return (
-      <form>
+      <form onSubmit={e => this.handleSubmit(e)}>
         <input type="text" value={this.state.textInput} onChange={e => this.handleChange(e)}/>
-        <input type="submit" value="Add" onClick={e => this.handleClick(e)}/>
+        <input type="submit" value="Add" />
       </form>
     )
   }

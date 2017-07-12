@@ -14,6 +14,36 @@
       "user_id": 23,
       "text": "Add a task",
       "id": 3
+    },
+    {
+      "user_id": 23,
+      "text": "Add another task",
+      "id": 4
+    },
+    {
+      "user_id": 23,
+      "text": "Add padding",
+      "id": 5
+    },
+    {
+      "user_id": 23,
+      "text": "Allow task removal",
+      "id": 6
+    },
+    {
+      "user_id": 23,
+      "text": "Remove console.log",
+      "id": 7
+    },
+    {
+      "user_id": 23,
+      "text": "Somehow it works",
+      "id": 8
+    },
+    {
+      "user_id": 23,
+      "text": "Style the todo items",
+      "id": 9
     }
   ]
 }

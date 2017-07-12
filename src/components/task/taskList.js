@@ -10,7 +10,7 @@ function TaskList({tasks}) {
       })
     }
     return (
-      <ul>
+      <ul className="todoList">
         { tasks }
       </ul>
     )
