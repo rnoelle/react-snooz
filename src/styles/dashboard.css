@@ -30,7 +30,22 @@ form input[type='submit']:hover {
   background: #dd511e;
   cursor: pointer;
 }
-
+.todoList {
+  margin-top: .5rem;
+}
 .todoList li {
-  
+  padding: .75rem;
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  transition: background-color 200ms;
+}
+.todoList li:hover {
+  background: #f6f6f6;
+}
+.todoList li i {
+  visibility: hidden;
+}
+.todoList li:hover i {
+  visibility: visible;
 }

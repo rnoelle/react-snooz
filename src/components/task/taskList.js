@@ -1,11 +1,12 @@
 import React from 'react';
+import Task from './task';
 
 function TaskList({tasks}) {
 
     if (tasks) {
        tasks = tasks.map(el => {
         return (
-          <li key={el.id}>{el.text}</li>
+          <Task task={el}/>
         )
       })
     }
