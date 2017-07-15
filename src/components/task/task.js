@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { removeTask } from '../../services/taskApi';
+
 class Task extends Component {
   constructor() {
     super();
@@ -9,8 +11,11 @@ class Task extends Component {
     this.openEditing = this.openEditing.bind(this);
   }
 
-  openEditing(e) {
-
+  openEditing() {
+    console.log('open!');
+    this.setState({
+      editing: true
+    })
   }
 
   render() {
@@ -20,7 +25,7 @@ class Task extends Component {
     } = this.props.task;
 
     return (
-      <li key={id}>{text}<i className="fa fa-pencil"></i></li>
+      <li><span onClick={() => removeTask(id)}>{text}</span><i className="fa fa-pencil" onClick={this.openEditing}></i></li>
     )
   }
 }

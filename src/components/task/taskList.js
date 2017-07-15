@@ -6,7 +6,7 @@ function TaskList({tasks}) {
     if (tasks) {
        tasks = tasks.map(el => {
         return (
-          <Task task={el}/>
+          <Task key={el.id} task={el}/>
         )
       })
     }

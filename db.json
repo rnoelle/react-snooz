@@ -2,48 +2,18 @@
   "tasks": [
     {
       "user_id": 23,
-      "text": "Finish add task functionality",
+      "text": "Add cross-out animation",
       "id": 1
     },
     {
       "user_id": 23,
-      "text": "Add a tasklist to show tasks",
+      "text": "Make removal smoother",
       "id": 2
     },
     {
       "user_id": 23,
-      "text": "Add a task",
+      "text": "Add editing",
       "id": 3
-    },
-    {
-      "user_id": 23,
-      "text": "Add another task",
-      "id": 4
-    },
-    {
-      "user_id": 23,
-      "text": "Add padding",
-      "id": 5
-    },
-    {
-      "user_id": 23,
-      "text": "Allow task removal",
-      "id": 6
-    },
-    {
-      "user_id": 23,
-      "text": "Remove console.log",
-      "id": 7
-    },
-    {
-      "user_id": 23,
-      "text": "Somehow it works",
-      "id": 8
-    },
-    {
-      "user_id": 23,
-      "text": "Style the todo items",
-      "id": 9
     }
   ]
 }
