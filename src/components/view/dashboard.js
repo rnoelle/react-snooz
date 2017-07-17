@@ -27,6 +27,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log('mapped', state.tasks);
   return {
     tasks: state.tasks
   }

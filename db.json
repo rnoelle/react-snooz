@@ -2,18 +2,18 @@
   "tasks": [
     {
       "user_id": 23,
-      "text": "Add cross-out animation",
-      "id": 1
+      "text": "Style editing, fix icon",
+      "id": 7
     },
     {
       "user_id": 23,
-      "text": "Make removal smoother",
-      "id": 2
+      "text": "Finish editing, test bugs",
+      "id": 8
     },
     {
       "user_id": 23,
-      "text": "Add editing",
-      "id": 3
+      "text": "Fix editing so it can edit correctly",
+      "id": 9
     }
   ]
 }
