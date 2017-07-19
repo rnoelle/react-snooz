@@ -23,7 +23,8 @@ export default class AddTodo extends Component {
     e.preventDefault();
     let newTask = {
       user_id: 23,
-      text: this.state.textInput
+      text: this.state.textInput,
+      category: this.props.category
     }
     postTask(newTask);
     getTasks()

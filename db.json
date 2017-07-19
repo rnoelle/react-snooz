@@ -19,6 +19,22 @@
       "user_id": 23,
       "text": "Add snooz capabilities",
       "id": 10
+    },
+    {
+      "user_id": 23,
+      "text": "Add notifications",
+      "id": 11
+    },
+    {
+      "user_id": 23,
+      "text": "Add categories",
+      "id": 12
+    },
+    {
+      "user_id": 23,
+      "text": "Vacuum downstairs",
+      "category": "house",
+      "id": 13
     }
   ]
 }
