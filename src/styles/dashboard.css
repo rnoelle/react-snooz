@@ -51,7 +51,11 @@ form input[type='submit']:hover {
 .todoList li input {
   border: none;
   padding: .5rem;
+  width: 100%;
+}
+.todoList li form {
   width: 70%;
+  display: inline-block;
 }
 .finished-task {
   text-decoration: line-through;

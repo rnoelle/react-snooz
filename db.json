@@ -7,13 +7,18 @@
     },
     {
       "user_id": 23,
-      "text": "Finish editing, test bugs",
+      "text": "Add more tasks",
       "id": 8
     },
     {
       "user_id": 23,
-      "text": "Fix editing so it can edit correctly",
+      "text": "Create a profile page",
       "id": 9
+    },
+    {
+      "user_id": 23,
+      "text": "Add snooz capabilities",
+      "id": 10
     }
   ]
 }
