@@ -6,6 +6,8 @@ const toDoSchema = Schema({
   text  : String,
   date_created : {type: Date},
   snoozes : [{type: Date}],
+  started : {type: Date},
+  finished : {type: Date},
   _user : {type: ObjectId, ref: 'User'},
   _collection : {type: ObjectId, ref: 'Collection'}
 });

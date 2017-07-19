@@ -35,6 +35,42 @@
       "text": "Vacuum downstairs",
       "category": "house",
       "id": 13
+    },
+    {
+      "user_id": 23,
+      "text": "Create a trello for Snooz",
+      "category": "work",
+      "id": 14
+    },
+    {
+      "user_id": 23,
+      "text": "Start hooking up the backend",
+      "category": "work",
+      "id": 15
+    },
+    {
+      "user_id": 23,
+      "text": "Create a Mongo database",
+      "category": "work",
+      "id": 16
+    },
+    {
+      "user_id": 23,
+      "text": "Add categories to model",
+      "category": "work",
+      "id": 17
+    },
+    {
+      "user_id": 23,
+      "text": "Fix hover issue on todos",
+      "category": "work",
+      "id": 18
+    },
+    {
+      "user_id": 23,
+      "text": "Fix todo styling",
+      "category": "work",
+      "id": 19
     }
   ]
 }
