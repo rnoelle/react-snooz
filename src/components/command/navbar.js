@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
+
 import '../../styles/navbar.css';
 
 class Navbar extends Component {
@@ -9,6 +10,7 @@ class Navbar extends Component {
       className: null
     }
     this.handleScroll = this.handleScroll.bind(this);
+    this.login = this.login.bind(this);
   }
   componentDidMount() {
       window.addEventListener('scroll', this.handleScroll)
@@ -28,6 +30,10 @@ class Navbar extends Component {
         className: null
       })
     };
+  }
+
+  login() {
+    this.props.auth.login();
   }
 
 

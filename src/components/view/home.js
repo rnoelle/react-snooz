@@ -4,6 +4,9 @@ require('../../styles/home.css')
 
 export default class Home extends Component {
   render() {
+    if (this.props.location.search === '?login=true') {
+      this.props.auth.login();
+    }
     return (
       <div>
         <div className="splash">
