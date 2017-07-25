@@ -46,7 +46,8 @@ class Navbar extends Component {
           <Link to="/"><div id="top-nav-logo"></div></Link>
           <div className={`links `}>
             <Link to="/dashboard"><span className={location.pathname === '/dashboard' ? 'active' : ''}>Dashboard</span></Link>
-            <Link to="/profile"><span  className={location.pathname === '/profile' ? 'active' : ''}>Profile</span></Link>
+            {/* <Link to="/profile"><span  className={location.pathname === '/profile' ? 'active' : ''}>Profile</span></Link> */}
+            <a href="/auth/login" rel="external">Profile</a>
           </div>
         </div>
     )

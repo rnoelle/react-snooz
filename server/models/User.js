@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
-    , Collection = require('./Collection')
+    , Group = require('./Group')
     , Schema = mongoose.Schema;
 
 const User = Schema({
   display_name : String,
   email : String,
-  collections : [{type: Collection}]
+  group : [{type: Schema.Types.ObjectId, ref: 'Group'}]
 })
 
 module.exports = mongoose.model('User', User);

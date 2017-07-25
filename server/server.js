@@ -3,7 +3,9 @@ const express = require('express')
     , mongoose = require('mongoose')
     , session = require('express-session')
     , path = require('path')
-    , config = require('./config');
+    , config = require('./config')
+    , passport = require('passport')
+    , Auth0Strategy = require('passport-auth0');
 
 const app = module.exports = express();
 
@@ -16,9 +18,29 @@ app.use(session({
   saveUninitialized: true
 }))
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+const strategy = new Auth0Strategy(config.auth, (accessToken, refreshToken, extraParams, profile, done) => {
+    return done(null, profile);
+})
+
+
+
+passport.use(strategy);
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
 });
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.set('passport', passport);
+
+
+
 
 mongoose.connect(config.mongoConnect).then(()=> {
   console.log('database connected');
@@ -26,8 +48,11 @@ mongoose.connect(config.mongoConnect).then(()=> {
 
 require('./routes')(app);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+});
 
 
-app.listen(3004, () => {
+app.listen(config.port, () => {
   console.log("Listening on", config.port);
 })

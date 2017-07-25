@@ -9,7 +9,7 @@ const toDoSchema = Schema({
   started : {type: Date},
   finished : {type: Date},
   _user : {type: ObjectId, ref: 'User'},
-  _collection : {type: ObjectId, ref: 'Collection'}
+  _group : {type: ObjectId, ref: 'Group'}
 });
 
 const ToDo = mongoose.model('ToDo', toDoSchema);
