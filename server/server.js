@@ -7,6 +7,7 @@ const express = require('express')
     , passport = require('passport')
     , Auth0Strategy = require('passport-auth0');
 
+
 const app = module.exports = express();
 
 app.use(bodyParser.json());
@@ -18,8 +19,9 @@ app.use(session({
   saveUninitialized: true
 }))
 
+const userCtrl = require('./controllers/userCtrl');
 const strategy = new Auth0Strategy(config.auth, (accessToken, refreshToken, extraParams, profile, done) => {
-    return done(null, profile);
+    userCtrl.checkForUser(profile, done)
 })
 
 
@@ -42,8 +44,11 @@ app.set('passport', passport);
 
 
 
-mongoose.connect(config.mongoConnect).then(()=> {
-  console.log('database connected');
+mongoose.connect(config.mongoConnect)
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('connected safely to database');
 });
 
 require('./routes')(app);

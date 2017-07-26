@@ -17,7 +17,7 @@ module.exports = app => {
     redirectUri: env.AUTH0_CALLBACK_URL,
     audience: 'https://' + env.AUTH0_DOMAIN + '/userinfo',
     responseType: 'code',
-    scope: 'openid'
+    scope: 'openid profile'
   }));
 
   app.get('/auth/logout', (req, res) => {
@@ -28,11 +28,20 @@ module.exports = app => {
   app.get(
     '/callback',
     passport.authenticate('auth0', {
-      failureRedirect: '/'
+      failureRedirect: '/',
+      successRedirect: '/dashboard'
     }),
     function(req, res) {
-      res.redirect(req.session.returnTo || '/profile');
+      res.redirect(req.session.returnTo || '/dashboard');
     }
   );
+
+  app.get('/api/user', (req, res) => {
+    if (req.user) {
+      res.status(200).send(req.user);
+    } else {
+      res.status(200).send(req.session);
+    }
+  })
 
 }

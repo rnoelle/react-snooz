@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 require('../../styles/profile.css');
 
@@ -36,4 +37,4 @@ function mapStateToProps({ users }) {
     user: users.user
   }
 }
-export default withRouter(Profile);
+export default connect(mapStateToProps)(withRouter(Profile));

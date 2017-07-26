@@ -1,37 +1,36 @@
-import auth0 from 'auth0-js';
+import axios from 'axios';
 import store from '../store';
 import history from '../history';
-import { AUTH_CONFIG } from './auth0-config';
 
-import { dispatchGetUser } from '../ducks/users';
-
-export default class Auth {
+class Auth {
 
 
-  userProfile;
+  userProfile = {};
 
   constructor() {
-    this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.getProfile = this.getProfile.bind(this);
   }
 
-  login() {
-  }
-
-  getProfile(cb) {
-      cb();
+  getProfile() {
+      return axios.get('/api/user').then(response => {
+        this.userProfile = response.data;
+        return response.data;
+      });
   }
 
   logout() {
-
     history.replace('/home');
   }
 
   isAuthenticated() {
-
+    return axios.get('/auth/isAuthenticated').then(response => {
+      return response.status
+    })
   }
 
 
 }
+
+export default Auth;

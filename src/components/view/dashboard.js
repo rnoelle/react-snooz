@@ -30,6 +30,7 @@ class Dashboard extends Component {
   }
 
   render() {
+    console.log(this.props);
     var { tasks } = this.props;
     if (this.state.category !== 'all') {
       tasks = tasks.filter(el => {
@@ -42,7 +43,7 @@ class Dashboard extends Component {
         <Categories selected={this.state.category}
           categories={this.props.categories}
           selectCategory={this.selectCategory}/>
-          
+
         <h3>Add a Task</h3>
         <AddTask category={ this.state.category }/>
         <TaskList tasks={ tasks }/>
