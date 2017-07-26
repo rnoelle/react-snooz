@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-    , Group = require('./Group')
-    , Schema = mongoose.Schema;
+    , Schema = mongoose.Schema
+    
 
 const User = Schema({
   auth0Id : String,

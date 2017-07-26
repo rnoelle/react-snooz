@@ -7,13 +7,18 @@ function TaskList({tasks}) {
     function removeTaskFromList(id) {
       removeTask(id);
     }
-
-    if (tasks) {
+    if (tasks.tasks) {
+      var {tasks} = tasks
+    }
+    if (tasks.map) {
        tasks = tasks.map(el => {
         return (
           <Task key={el.id} task={el} removeTask={removeTaskFromList}/>
         )
       })
+    } else {
+      console.log('tasks in taskList', tasks);
+      tasks = []
     }
     return (
       <ul className="todoList">

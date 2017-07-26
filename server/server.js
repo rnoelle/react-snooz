@@ -5,7 +5,9 @@ const express = require('express')
     , path = require('path')
     , config = require('./config')
     , passport = require('passport')
-    , Auth0Strategy = require('passport-auth0');
+    , Auth0Strategy = require('passport-auth0')
+    , User = require('./models/User')
+    ;
 
 
 const app = module.exports = express();
@@ -29,11 +31,13 @@ const strategy = new Auth0Strategy(config.auth, (accessToken, refreshToken, extr
 passport.use(strategy);
 
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  done(null, user._id);
 });
 
-passport.deserializeUser(function(user, done) {
-  done(null, user);
+passport.deserializeUser(function(id, done) {
+  User.findById(id, (err, user) => {
+    done(err, user);
+  })
 });
 
 app.use(passport.initialize());

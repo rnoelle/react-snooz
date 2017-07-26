@@ -15,6 +15,7 @@ class Auth {
 
   getProfile() {
       return axios.get('/api/user').then(response => {
+        console.log('user response', response);
         this.userProfile = response.data;
         return response.data;
       });

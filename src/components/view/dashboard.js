@@ -25,17 +25,20 @@ class Dashboard extends Component {
 
   selectCategory(category) {
     this.setState({
-      category: category
+      group: category
     })
   }
 
   render() {
-    console.log(this.props);
-    var { tasks } = this.props;
+    var { tasks, auth } = this.props;
     if (this.state.category !== 'all') {
       tasks = tasks.filter(el => {
         return el.category === this.state.category;
       })
+    }
+
+    if (!auth.userProfile.display_name) {
+      auth.getProfile()
     }
 
     return (

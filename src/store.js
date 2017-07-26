@@ -4,7 +4,7 @@ import tasks from './ducks/tasks';
 import users from './ducks/users';
 
 const initialState = {
-  tasks: {}
+  tasks: []
 }
 
 const reducers = combineReducers({
