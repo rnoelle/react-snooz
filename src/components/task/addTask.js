@@ -27,7 +27,6 @@ export default class AddTodo extends Component {
       category: this.props.category
     }
     postTask(newTask);
-    getTasks()
     this.setState({
       textInput: ''
     })

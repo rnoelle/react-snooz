@@ -1,8 +1,17 @@
 main.dashboard {
   padding-top: 15vh;
   padding-bottom: 5vh;
-  max-width: 1400px;
+  max-width: 1000px;
   margin: auto;
+  display: flex;
+}
+main.dashboard h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+main.dashboard h2 i {
+  margin-right: .5em;
 }
 form input {
   height: 35px;
@@ -37,6 +46,7 @@ form input[type='submit']:hover {
   padding: .75rem;
   width: 400px;
   transition: all 300ms ease;
+  cursor: pointer;
 }
 .todoList li:hover {
   background: #f6f6f6;
@@ -65,7 +75,6 @@ form input[type='submit']:hover {
 }
 
 aside.categories {
-  float: left;
   min-height: 80vh;
   padding-right: 3rem;
 }

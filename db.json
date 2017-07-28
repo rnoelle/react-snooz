@@ -2,75 +2,37 @@
   "tasks": [
     {
       "user_id": 23,
-      "text": "Style editing, fix icon",
-      "id": 7
-    },
-    {
-      "user_id": 23,
-      "text": "Add more tasks",
-      "id": 8
-    },
-    {
-      "user_id": 23,
-      "text": "Create a profile page",
-      "id": 9
-    },
-    {
-      "user_id": 23,
-      "text": "Add snooz capabilities",
-      "id": 10
-    },
-    {
-      "user_id": 23,
-      "text": "Add notifications",
-      "id": 11
-    },
-    {
-      "user_id": 23,
-      "text": "Add categories",
-      "id": 12
-    },
-    {
-      "user_id": 23,
-      "text": "Vacuum downstairs",
-      "category": "house",
-      "id": 13
-    },
-    {
-      "user_id": 23,
-      "text": "Create a trello for Snooz",
-      "category": "work",
-      "id": 14
-    },
-    {
-      "user_id": 23,
-      "text": "Start hooking up the backend",
-      "category": "work",
-      "id": 15
-    },
-    {
-      "user_id": 23,
-      "text": "Create a Mongo database",
-      "category": "work",
-      "id": 16
-    },
-    {
-      "user_id": 23,
-      "text": "Add categories to model",
-      "category": "work",
-      "id": 17
-    },
-    {
-      "user_id": 23,
       "text": "Fix hover issue on todos",
       "category": "work",
       "id": 18
     },
     {
       "user_id": 23,
-      "text": "Fix todo styling",
+      "text": "Laundry",
+      "category": "house",
+      "id": 23
+    },
+    {
+      "user_id": 23,
+      "text": "Make car key copies",
+      "category": "house",
+      "id": 24
+    },
+    {
+      "user_id": 23,
+      "text": "Fix id to be _id",
       "category": "work",
-      "id": 19
+      "id": 25
     }
-  ]
+  ],
+  "user": {
+    "_id": "5978eafe33ad158011d93b21",
+    "auth0Id": "facebook|10158244186020615",
+    "display_name": "Noelle Eliza Reid Bott",
+    "categories": [
+      "work",
+      "house"
+    ],
+    "__v": 0
+  }
 }

@@ -5,7 +5,10 @@ import AddTask from '../task/addTask';
 import TaskList from '../task/taskList';
 import Categories from '../command/categories';
 
+import { getUser } from '../../services/userApi';
 import { getTasks } from '../../services/taskApi';
+import { getLocalHour } from '../../services/time';
+import { createCategories } from '../../services/sortTasks';
 
 require('../../styles/dashboard.css');
 
@@ -14,42 +17,76 @@ class Dashboard extends Component {
     super(props);
 
     this.state = {
-      category: 'all'
+      category: 'all',
+      greeting: 'Hello, ',
+      greetingIcon : '',
+      categories: []
     }
     this.selectCategory = this.selectCategory.bind(this);
   }
 
   componentDidMount() {
-    getTasks();
+    if (!this.props.user) {
+      getUser();
+    }
+      getTasks();
+      var hour = getLocalHour();
+      if (hour > 3 && hour < 12) {
+        this.setState({
+          greeting: 'Good Morning, ',
+          greetingIcon: 'fa-sun-o'
+        })
+      } else if (hour > 12 && hour < 17) {
+        this.setState({
+          greeting: 'Good Afternoon, ',
+          greetingIcon: 'fa-sun-o'
+        })
+      } else {
+        this.setState({
+          greeting: 'Good Evening, ',
+          greetingIcon: 'fa-moon-o'
+        })
+      }
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user){
+      this.setState({
+        categories: createCategories(nextProps.user.categories || [], nextProps.tasks || [])
+      })
+    }
+  }
+
 
   selectCategory(category) {
     this.setState({
-      group: category
+      category: category
     })
   }
 
   render() {
-    var { tasks, auth } = this.props;
+    var { tasks, auth, user } = this.props;
+
     if (this.state.category !== 'all') {
       tasks = tasks.filter(el => {
         return el.category === this.state.category;
       })
     }
 
-    if (!auth.userProfile.display_name) {
-      auth.getProfile()
-    }
-
     return (
       <main className={'dashboard'}>
         <Categories selected={this.state.category}
-          categories={this.props.categories}
+          categories={this.state.categories}
           selectCategory={this.selectCategory}/>
-
-        <h3>Add a Task</h3>
-        <AddTask category={ this.state.category }/>
-        <TaskList tasks={ tasks }/>
+        <div>
+          <h2>
+            <i className={`fa ${this.state.greetingIcon}`}></i>
+            {this.props.user? this.state.greeting + this.props.user.display_name : ''}
+          </h2>
+          <h3>Add a Task</h3>
+          <AddTask category={ this.state.category }/>
+          <TaskList tasks={ tasks }/>
+        </div>
       </main>
     )
   }
@@ -57,8 +94,8 @@ class Dashboard extends Component {
 
 function mapStateToProps(state) {
   return {
-    tasks: state.tasks,
-    categories: ['work', 'house', 'writing']
+    tasks: state.tasks.tasks || [],
+    user: state.users.user
   }
 }
 

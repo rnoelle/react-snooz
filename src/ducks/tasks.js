@@ -21,7 +21,11 @@ export default function reducer(state = {}, action) {
       var newTasks = [...state.tasks.slice(0, oldTask), newTask, ...state.tasks.slice(oldTask+1)]
       return Object.assign({}, state, {tasks: newTasks})
     case REMOVE_TASK_FULFILLED:
-      return state;
+      let newTasks = state.tasks.filter(el=>el.id!==action.payload);
+      console.log(newTasks === state.tasks);
+      let newState = Object.assign({}, state, {tasks: newTasks})
+      console.log(newState);
+      return newState;
     default: return state;
 
   }
