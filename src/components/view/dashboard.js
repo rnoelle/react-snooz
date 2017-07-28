@@ -87,6 +87,7 @@ class Dashboard extends Component {
           <AddTask category={ this.state.category }/>
           <TaskList tasks={ tasks }/>
         </div>
+        <div className="filler"></div>
       </main>
     )
   }

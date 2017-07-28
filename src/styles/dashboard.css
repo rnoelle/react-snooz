@@ -4,6 +4,10 @@ main.dashboard {
   max-width: 1000px;
   margin: auto;
   display: flex;
+  justify-content: center;
+}
+main.dashboard > .filler {
+  width: 10em;
 }
 main.dashboard h2 {
   font-size: 1.5rem;
