@@ -10,6 +10,8 @@ import { getTasks } from '../../services/taskApi';
 import { getLocalHour } from '../../services/time';
 import { createCategories } from '../../services/sortTasks';
 
+import apiUrl from '../../services/apiUrl';
+
 require('../../styles/dashboard.css');
 
 class Dashboard extends Component {
@@ -67,6 +69,10 @@ class Dashboard extends Component {
   render() {
     var { tasks, auth, user } = this.props;
 
+    // if (!auth.isAuthenticated()) {
+    //   window.location.assign(`${apiUrl}auth/login`);
+    // }
+
     if (this.state.category !== 'all') {
       tasks = tasks.filter(el => {
         return el.category === this.state.category;
@@ -81,7 +87,7 @@ class Dashboard extends Component {
         <div>
           <h2>
             <i className={`fa ${this.state.greetingIcon}`}></i>
-            {this.props.user? this.state.greeting + this.props.user.display_name : ''}
+            {user? this.state.greeting + user.display_name : ''}
           </h2>
           <h3>Add a Task</h3>
           <AddTask category={ this.state.category }/>

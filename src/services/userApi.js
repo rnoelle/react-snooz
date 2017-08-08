@@ -7,7 +7,6 @@ import {
 } from '../ducks/users';
 
 export function getUser() {
-  console.log('getting user');
   let promise = axios.get(apiUrl + 'user').then(response => {
     console.log('incoming user', response);
     return response.data;
@@ -15,4 +14,11 @@ export function getUser() {
     console.log(err);
   })
   store.dispatch( dispatchGetUser(promise) )
+}
+
+export function editUser(property, edit) {
+  axios.patch(`${apiUrl}user`, {[property.toLowerCase()]: edit}).then(response => {
+    console.log(response);
+    getUser();
+  })
 }

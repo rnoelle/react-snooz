@@ -7,24 +7,25 @@ const GET_TASKS = 'GET_TASKS',
       GET_TASKS_FULFILLED = 'GET_TASKS_FULFILLED';
 
 export default function reducer(state = {}, action) {
+  var newTasks,
+      newTask,
+      oldTask,
+      newState;
   switch (action.type) {
     case GET_TASKS_FULFILLED:
       return Object.assign({}, state, {tasks: action.payload});
     case EDIT_TASK_FULFILLED:
-      var newTask = action.payload;
-      var oldTask;
+      newTask = action.payload;
       for (let i = 0; i < state.tasks.length; i++) {
         if (state.tasks[i].id === newTask.id) {
           oldTask = i;
         }
       }
-      var newTasks = [...state.tasks.slice(0, oldTask), newTask, ...state.tasks.slice(oldTask+1)]
+      newTasks = [...state.tasks.slice(0, oldTask), newTask, ...state.tasks.slice(oldTask+1)]
       return Object.assign({}, state, {tasks: newTasks})
     case REMOVE_TASK_FULFILLED:
-      let newTasks = state.tasks.filter(el=>el.id!==action.payload);
-      console.log(newTasks === state.tasks);
-      let newState = Object.assign({}, state, {tasks: newTasks})
-      console.log(newState);
+      newTasks = state.tasks.filter(el=>el.id!==action.payload);
+      newState = Object.assign({}, state, {tasks: newTasks})
       return newState;
     default: return state;
 

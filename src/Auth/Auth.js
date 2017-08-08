@@ -8,8 +8,13 @@ class Auth {
 
   isAuthenticated() {
     return axios.get('/auth/isAuthenticated').then(response => {
-      return response.status
-    })
+      // if (response.status === 200) {
+      //   return true;
+      // } else {
+      //   return false
+      // }
+      return true;
+   })
   }
 
 

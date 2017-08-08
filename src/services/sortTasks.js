@@ -21,8 +21,17 @@ export function createCategories(categoriesList, tasks) {
 
   })
 
-  console.log('created categories', categories);
-
   return categories;
 
+}
+
+
+export function numFinishedTasks(tasks) {
+  var finishedTasks = 0;
+  tasks.forEach(el => {
+    if (el.completed) {
+      finishedTasks++;
+    }
+  })
+  return finishedTasks;
 }

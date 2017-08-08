@@ -19,18 +19,23 @@ class App extends Component {
       <div className="page-content">
         <Navbar auth={auth}/>
             <Route exact path="/" render={(props) => <Home auth={auth} {...props}/>}/>
-            <Route exact path="/profile" render={(props) => {
+            {/* <Route exact path="/profile" render={(props) => {
               auth.isAuthenticated().then(response => {
-                console.log(response);
-                if (!response) {
+                  console.log('response', response);
                   return (
                     <Profile auth={auth} {...props}/>
                   )
-                  }
+                }).catch(response => {
+                  console.log('catch response', response);
+                  return (
+                    <Profile auth={auth} {...props} />
+                  )
                 })
               }
-            } />
-
+            } /> */}
+            <Route exact path="/profile" render={props => (
+              <Profile auth={auth} {...props}/>
+            )}/>
             <Route exact path="/dashboard" render={(props) => <Dashboard auth={auth} {...props}/> } />
         <Footer/>
       </div>

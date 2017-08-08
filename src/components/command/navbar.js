@@ -38,16 +38,19 @@ class Navbar extends Component {
 
 
   render() {
-    const { location } = this.props;
+    const { location, auth } = this.props;
     let fill = location.pathname === '/' ? this.state.className : 'scrolled';
-
     return (
         <div className={`navbar ${fill}`}>
           <Link to="/"><div id="top-nav-logo"></div></Link>
           <div className={`links `}>
             <Link to="/dashboard"><span className={location.pathname === '/dashboard' ? 'active' : ''}>Dashboard</span></Link>
-            {/* <Link to="/profile"><span  className={location.pathname === '/profile' ? 'active' : ''}>Profile</span></Link> */}
-            <a href="/auth/login" rel="external">Profile</a>
+            {/* { auth.isAuthenticated() ?
+              <Link to="/profile"><span  className={location.pathname === '/profile' ? 'active' : ''}>Profile</span></Link>
+              :
+            <a href="/auth/login" rel="external">Profile</a> */
+          }
+          <Link to="/profile"><span  className={location.pathname === '/profile' ? 'active' : ''}>Profile</span></Link>
           </div>
         </div>
     )

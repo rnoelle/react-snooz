@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { postTask, getTasks } from '../../services/taskApi';
+import { postTask } from '../../services/taskApi';
 
 export default class AddTodo extends Component {
   constructor() {
