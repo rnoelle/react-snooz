@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import './styles/App.css';
 
 import Auth from './Auth/Auth';
+import sockets from './services/sockets';
 
 import Home from './components/view/home';
 import Profile from './components/view/profile';
@@ -11,6 +12,7 @@ import Navbar from './components/command/navbar';
 import Footer from './components/command/footer';
 
 const auth = new Auth();
+sockets();
 
 
 class App extends Component {

@@ -7,6 +7,7 @@ const express = require('express')
     , passport = require('passport')
     , Auth0Strategy = require('passport-auth0')
     , User = require('./models/User')
+    , startSockets = require('./controllers/sockets')
     ;
 
 
@@ -19,14 +20,12 @@ app.use(session({
   secret: config.sessionSecret,
   resave: false,
   saveUninitialized: true
-}))
+}));
 
 const userCtrl = require('./controllers/userCtrl');
 const strategy = new Auth0Strategy(config.auth, (accessToken, refreshToken, extraParams, profile, done) => {
     userCtrl.checkForUser(profile, done)
 })
-
-
 
 passport.use(strategy);
 
@@ -62,6 +61,7 @@ app.get('*', (req, res) => {
 });
 
 
-app.listen(config.port, () => {
+const server = app.listen(config.port, () => {
   console.log("Listening on", config.port);
+  startSockets(server);
 })

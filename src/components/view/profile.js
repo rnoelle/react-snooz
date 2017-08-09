@@ -57,12 +57,12 @@ class Profile extends Component {
     if (user.email) {
       !this.state.editingEmail ? emailElement = <h4 onClick={() => this.toggleEditing('Email')}>{user.email}</h4>
       : emailElement = (<form onSubmit={(e) => this.handleSubmit(e, 'Email')}>
-        <input type="email" placeholder="Email" onChange={(e) => this.handleChange(e, 'Email')}/>
+        <input type="email" placeholder="Email" defaultValue={user.email} onChange={(e) => this.handleChange(e, 'Email')}/>
       </form>)
     } else {
       !this.state.editingEmail ? emailElement = <h4 className="text-side-subtitle" onClick={() => this.toggleEditing('Email')}>Add email</h4>
       : emailElement = (<form onSubmit={(e) => this.handleSubmit(e, 'Email')}>
-        <input type="email" placeholder="Email" onChange={(e) => this.handleChange(e, 'Email')}/>
+        <input type="email" placeholder="Email" value={this.state.userInputEmail} onChange={(e) => this.handleChange(e, 'Email')}/>
       </form>)
     }
     return (

@@ -1,1 +1,3 @@
-export default 'http://localhost:3005/';
+export default 'http://localhost:3004/';
+
+export const socketUrl = 'http://localhost';
