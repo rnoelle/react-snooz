@@ -1,11 +1,35 @@
 const socket = require('socket.io')
+    , ToDo = require('../models/ToDo')
+    , passportSocketIo = require('passport.socketio')
+    , cookieParser = require('cookie-parser')
+    , config = require('../config')
+    , notifications = require('./notifications')
     ;
 
-module.exports = (app) => {
-  console.log('starting sockets...');
-  const io = socket(app)
+module.exports = (app, store) => {
+  const io = socket(app);
+
+  io.set('authorization', passportSocketIo.authorize({
+    cookieParser: cookieParser
+    key: config.cookieKey,
+    secret: config.sessionSecret,
+    store: store,
+    success: onAuthorizeSuccess,
+    fail: onAuthorizeFailure
+  }))
+
   io.on('connection', socket => {
-    console.log('socket started');
-    socket.emit('news', {socket: 'connected'});
+    socket.emit('news', 'socket connected');
+    notifications.checkTasksOnInterval(socket);
   })
+
+
+  function onAuthorizeSuccess(data, accept) {
+    console.log('authorized', data);
+    accept(null, true);
+  }
+  function onAuthorizeFailure(data, message, error, accept) {
+    console.log('not authorized', data, message, error);
+    accept(null, false);
+  }
 }
