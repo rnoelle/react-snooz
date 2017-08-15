@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
     , ToDo = require('../models/ToDo')
     , User = require('../models/User')
+    , notifications = require('./notifications')
+    ;
 
 module.exports = {
 
@@ -18,9 +20,10 @@ module.exports = {
   }
 
   snoozeToDo(req, res) {
-
-    ToDo.findByIdAndUpdate(req.params.id, {notify: newNotifyTime}, toDo => {
-
+    var newNotifyTime = notifications.findNewNotifyTime(toDo, req);
+    ToDo.findByIdAndUpdate(req.params.id, {notify: newNotifyTime}, (err, toDo) => {
+      if (err) return res.status(500).send(err);
+      res.status(200).send(toDo);
     })
   }
 

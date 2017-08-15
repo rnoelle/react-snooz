@@ -92,99 +92,32 @@ module.exports = {
         }
 
         return this.giveHour(optimalTime);
-
       })
     }, //end findNewNotifyTime
     giveHour(optimalTime) {
       var hour = Number(optimalTime[1].split('t')[0]);
       var d = new Date();
       d.setDate(d.getDate() + ((7-d.getDay())%7+optimalTime[0]) % 7);
-      d.setHour(optimalTime[1]);
+      d.setHour(hour);
       return d;
     }
 
   } //end module exports
 
 
-  function sortHour(hour) {
-    if (hour >= 5 && hour < 8)
-      return '5to8';
-    if (hour >= 8 && hour < 10)
-      return '8to10';
-    if (hour >= 10 && hour < 12)
-      return '10to12';
-    if (hour >= 12 && hour < 14)
-      return '12to14';
-    if (hour >= 14 && hour < 17)
-      return '14to17';
-    if (hour >= 17 && hour < 20)
-      return '17to20';
-    if (hour >= 20 || hour < 5)
-      return '17to20';
-    }
-
-  const dictionary = {
-    0: {
-      '5to8': 0,
-      '8to10': 0,
-      '10to12': 0,
-      '12to14': 0,
-      '14to17': 0,
-      '17to20': 0,
-      '20to5': 0
-    },
-    1: {
-      '5to8': 0,
-      '8to10': 0,
-      '10to12': 0,
-      '12to14': 0,
-      '14to17': 0,
-      '17to20': 0,
-      '20to5': 0
-    },
-    2: {
-      '5to8': 0,
-      '8to10': 0,
-      '10to12': 0,
-      '12to14': 0,
-      '14to17': 0,
-      '17to20': 0,
-      '20to5': 0
-    },
-    3: {
-      '5to8': 0,
-      '8to10': 0,
-      '10to12': 0,
-      '12to14': 0,
-      '14to17': 0,
-      '17to20': 0,
-      '20to5': 0
-    },
-    4: {
-      '5to8': 0,
-      '8to10': 0,
-      '10to12': 0,
-      '12to14': 0,
-      '14to17': 0,
-      '17to20': 0,
-      '20to5': 0
-    },
-    5: {
-      '5to8': 0,
-      '8to10': 0,
-      '10to12': 0,
-      '12to14': 0,
-      '14to17': 0,
-      '17to20': 0,
-      '20to5': 0
-    },
-    6: {
-      '5to8': 0,
-      '8to10': 0,
-      '10to12': 0,
-      '12to14': 0,
-      '14to17': 0,
-      '17to20': 0,
-      '20to5': 0
-    }
+function sortHour(hour) {
+  if (hour >= 5 && hour < 8)
+    return '5to8';
+  if (hour >= 8 && hour < 10)
+    return '8to10';
+  if (hour >= 10 && hour < 12)
+    return '10to12';
+  if (hour >= 12 && hour < 14)
+    return '12to14';
+  if (hour >= 14 && hour < 17)
+    return '14to17';
+  if (hour >= 17 && hour < 20)
+    return '17to20';
+  if (hour >= 20 || hour < 5)
+    return '17to20';
   }
