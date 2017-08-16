@@ -72,7 +72,7 @@ class Profile extends Component {
           {emailElement}
         <br/>
         <h3>Finished Tasks</h3>
-        <h3 className="text-em-red">{finishedTasks}</h3>
+        <h3 className="text-em-orange">{finishedTasks}</h3>
       </main>
     )
   }

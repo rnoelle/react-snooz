@@ -7,6 +7,7 @@ const toDoSchema = Schema({
   date_created : {type: Date},
   snoozes : [{type: Date}],
   notify : {type: Date},
+  started : {type: Date},
   finished : {type: Date},
   _user : {type: ObjectId, ref: 'User'},
   _category : {type: ObjectId, ref: 'Category'}

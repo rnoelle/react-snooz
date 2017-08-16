@@ -49,11 +49,13 @@ module.exports = {
           var day = toDo.finished.getDay();
           var today = new Date().getDay();
           var diff = day - today;
-          if (diff > 2 && diff < 5 || diff > -5 && diff < -2)
-            return; //only days close
+          if (diff > 2 && diff < 5 || diff > -5 && diff < -2) return; //only days close
 
           var hour = toDo.finished.getHours();
           localDictionary[day][sortHour(hour)] += 5;
+          day = toDo.started.getDay();
+          hour = toDo.started.getHours();
+          localDictionary[day][sortHour(hour)] += 25;
           toDo.snoozes.forEach(snooze => {
             var day = Date.getDay(snooze);
             var hour = Date.getHours(snooze);
