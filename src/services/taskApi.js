@@ -35,3 +35,10 @@ export function editTask(id, update) {
   })
   store.dispatch( dispatchEditTask(promise) );
 }
+
+export function snooze(toDo) {
+  return axios.post(`${apiUrl}snooze/${toDo._id}`).then(response => {
+    console.log(response);
+    return response;
+  })
+}

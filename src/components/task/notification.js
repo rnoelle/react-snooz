@@ -1,18 +1,21 @@
 import React from 'react';
+require('../../styles/notification.css')
 
-function Notification( { toDo, snooze, finish } ) {
+function Notification( { toDo, snooze, start } ) {
   return (
     <div className="notification-backdrop">
       <div>
         <h1>{toDo.text}</h1>
         <h3>You've snoozed this task
-          <span className="text-em-orange">{toDo.snoozes.length}</span>
-        times.</h3>
+          <span className="text-em-orange"> {toDo.snoozes.length} </span>
+         times.</h3>
         <div className="notification-buttons">
-          <button>Snooz</button>
-          <button>Doing it Now</button>
+          <button onClick={() => snooze(toDo)}>Snooz</button>
+          <button className="button-green" onClick={() => start(toDo)}>Doing it Now</button>
         </div>
       </div>
     </div>
   )
 }
+
+export default Notification;

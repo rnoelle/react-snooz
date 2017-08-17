@@ -73,6 +73,12 @@ button:hover {
   background: #B23D13;
   cursor: pointer;
 }
+button.button-green {
+	background: #87e75b;
+}
+button.button-green:hover {
+	background: #32CD32;
+}
 .text-em-orange {
   color: #FF6B35;
 }

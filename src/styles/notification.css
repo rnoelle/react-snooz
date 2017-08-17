@@ -1,0 +1,36 @@
+.notification-backdrop {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notification-backdrop > div {
+  padding: 3rem;
+  background: #efefef;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.notification-backdrop h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.notification-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.notification-buttons > button {
+  margin-left: .5rem;
+  margin-right: .5rem;
+  margin-top: 2rem;
+  font-size: .85em;
+}

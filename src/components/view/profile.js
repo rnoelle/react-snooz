@@ -66,7 +66,7 @@ class Profile extends Component {
       </form>)
     }
     return (
-      <main>
+      <main className="profile-main">
         <h1>{user.display_name} <span className="text-side-subtitle">{user.level || "Novice"}</span></h1>
         <h3>Email</h3>
           {emailElement}

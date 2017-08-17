@@ -1,8 +1,8 @@
-main {
+main.profile-main {
   padding: 15vh 5vw 10vh 5vw;
   min-height: 80vh;
 }
-main h1 {
+main.profile-main h1 {
   font-size: 1.5rem;
   border-bottom: 1.5px solid #ccc;
   display: inline-block;
