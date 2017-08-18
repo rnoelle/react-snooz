@@ -23,6 +23,14 @@ module.exports = {
       }
 
     })
+  },
+
+  isAuthenticated(req, res) {
+    if (req.user) {
+      res.status(200).send();
+    } else {
+      res.status(401).send();
+    }
   }
 
 }

@@ -20,6 +20,8 @@ module.exports = app => {
     scope: 'openid profile'
   }));
 
+  app.get('/api/isAuthenticated', userCtrl.isAuthenticated)
+
   app.get('/auth/logout', (req, res) => {
     req.logout();
     res.redirect('/');
@@ -40,7 +42,7 @@ module.exports = app => {
     if (req.user) {
       res.status(200).send(req.user);
     } else {
-      res.status(200).send(req.session);
+      res.status(401).send(req.session);
     }
   })
 

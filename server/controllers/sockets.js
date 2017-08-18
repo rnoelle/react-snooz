@@ -10,7 +10,7 @@ module.exports = (app, store) => {
   const io = socket(app);
 
   io.set('authorization', passportSocketIo.authorize({
-    cookieParser: cookieParser
+    cookieParser: cookieParser,
     key: config.cookieKey,
     secret: config.sessionSecret,
     store: store,
@@ -25,11 +25,11 @@ module.exports = (app, store) => {
 
 
   function onAuthorizeSuccess(data, accept) {
-    console.log('authorized', data);
+    console.log('authorized');
     accept(null, true);
   }
   function onAuthorizeFailure(data, message, error, accept) {
-    console.log('not authorized', data, message, error);
+    console.log('not authorized', message, error);
     accept(null, false);
   }
 }

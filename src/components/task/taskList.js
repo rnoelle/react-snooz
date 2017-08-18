@@ -7,8 +7,9 @@ function TaskList({tasks}) {
     function removeTaskFromList(id) {
       removeTask(id);
     }
-    
+
     if (tasks) {
+      console.log('tasks', tasks);
        tasks = tasks.map(el => {
         return (
           <Task key={el.id} task={el} removeTask={removeTaskFromList}/>

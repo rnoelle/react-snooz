@@ -1,4 +1,5 @@
 import axios from 'axios';
+import apiUrl from '../services/apiUrl';
 
 class Auth {
 
@@ -7,13 +8,12 @@ class Auth {
   }
 
   isAuthenticated() {
-    return axios.get('/auth/isAuthenticated').then(response => {
-      // if (response.status === 200) {
-      //   return true;
-      // } else {
-      //   return false
-      // }
-      return true;
+    return axios.get(`${apiUrl}isAuthenticated`).then(response => {
+      if (response.status === 200) {
+        return true;
+      } else {
+        return false
+      }
    })
   }
 

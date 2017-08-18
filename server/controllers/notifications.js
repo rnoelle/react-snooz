@@ -5,8 +5,9 @@ const CronJob = require('cron').CronJob,
 module.exports = {
   checkTasksOnInterval(socket) {
     var user = socket.request.user;
-    console.log(socket.request);
+    console.log('socket user', socket.request.user);
     var job = new CronJob('15 * * * * *', () => {
+      console.log('check');
       ToDo.find({
         _user: user._id,
         finished: null,
@@ -19,6 +20,7 @@ module.exports = {
         })
       })
     })
+  },
 
     findNewNotifyTime(toDo, req) {
       //default is 4 hours for first snooze
@@ -62,7 +64,7 @@ module.exports = {
             localDictionary[day][hour]--;
           })
         })
-        var optimalTimeScore = 0;,
+        var optimalTimeScore = 0;
         optimalTime;
         for (var i = 0; i < 6; i++) {
           var chosenDay = (today + i) % 7;

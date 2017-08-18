@@ -13,6 +13,7 @@ import Footer from './components/command/footer';
 import Notification from './components/task/notification';
 
 import { snooze, editTask } from './services/taskApi';
+import apiUrl from './services/apiUrl';
 const auth = new Auth();
 
 
@@ -70,7 +71,7 @@ class App extends Component {
       <div className="page-content" style={stopPage}>
         <Navbar auth={auth}/>
             <Route exact path="/" render={(props) => <Home auth={auth} {...props}/>}/>
-            {/* <Route exact path="/profile" render={(props) => {
+             <Route exact path="/profile" render={(props) => {
               auth.isAuthenticated().then(response => {
                   console.log('response', response);
                   return (
@@ -78,15 +79,13 @@ class App extends Component {
                   )
                 }).catch(response => {
                   console.log('catch response', response);
-                  return (
-                    <Profile auth={auth} {...props} />
-                  )
+                  window.location.assign(`${apiUrl}auth/login`)
                 })
               }
-            } /> */}
-            <Route exact path="/profile" render={props => (
+            } />
+            {/*<Route exact path="/profile" render={props => (
               <Profile auth={auth} {...props}/>
-            )}/>
+            )}/> */}
             <Route exact path="/dashboard" render={(props) => <Dashboard auth={auth} {...props}/> } />
         <Footer/>
         {notifications}

@@ -8,27 +8,21 @@ const express = require('express')
     , Auth0Strategy = require('passport-auth0')
     , User = require('./models/User')
     , startSockets = require('./controllers/sockets')
-    , Yams = require('yams')(session)
     , cookieParser = require('cookie-parser')
+    , MongoStore = require('connect-mongo')(session)
     ;
 
 
 const app = module.exports = express();
 
-const store = new Yams(callback => {
-  mongoose.connect(config.mongoConnect);
-  var db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'connection error:'));
-  db.once('open', function() {
-    console.log('connected safely to database');
-    var sessionsCollection = db.collection('sessions')
+mongoose.connect(config.mongoConnect);
+var db = mongoose.connection;
 
-    //use TTL in mongodb, the document will be automatically expired when the session ends.
-    sessionsCollection.ensureIndex({expires:1}, {expireAfterSeconds: 0}, function(){});
-
-    callback(null, sessionsCollection);
-  });
-})
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('connected safely to database');
+});
+var store = new MongoStore({mongooseConnection: db});
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -63,7 +57,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.set('passport', passport);
-
 
 
 require('./routes')(app);
