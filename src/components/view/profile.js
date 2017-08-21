@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getUser, editUser } from '../../services/userApi';
 import { numFinishedTasks } from '../../services/sortTasks';
+import { authUrl } from '../../services/apiUrl';
 
 require('../../styles/profile.css');
 
@@ -20,7 +21,11 @@ class Profile extends Component {
   }
 
   componentWillMount() {
-    this.setState({ profile: {} });
+    this.props.auth.isAuthenticated().then(response => {
+      if (typeof window !== 'undefined') {
+           window.location.href = `${authUrl}login`;
+      }
+    })
     if (!this.props.user.display_name) {
       getUser((err, profile) => {
       });
@@ -49,6 +54,7 @@ class Profile extends Component {
   }
 
   render() {
+
     var {
       user
     } = this.props;
@@ -66,6 +72,7 @@ class Profile extends Component {
       </form>)
     }
     return (
+
       <main className="profile-main">
         <h1>{user.display_name} <span className="text-side-subtitle">{user.level || "Novice"}</span></h1>
         <h3>Email</h3>

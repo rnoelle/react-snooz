@@ -10,7 +10,7 @@ import { getTasks } from '../../services/taskApi';
 import { getLocalHour } from '../../services/time';
 import { createCategories } from '../../services/sortTasks';
 
-import apiUrl from '../../services/apiUrl';
+import apiUrl, { authUrl } from '../../services/apiUrl';
 
 require('../../styles/dashboard.css');
 
@@ -22,9 +22,21 @@ class Dashboard extends Component {
       category: 'all',
       greeting: 'Hello, ',
       greetingIcon : '',
-      categories: []
+      redirect: false
     }
     this.selectCategory = this.selectCategory.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.auth.isAuthenticated().then(response => {
+      if (typeof window !== 'undefined') {
+           window.location.href = `${authUrl}login`;
+      }
+    })
+    if (!this.props.user.display_name) {
+      getUser((err, profile) => {
+      });
+    }
   }
 
   componentDidMount() {
@@ -69,10 +81,6 @@ class Dashboard extends Component {
   render() {
     var { tasks, auth, user } = this.props;
 
-    // if (!auth.isAuthenticated()) {
-    //   window.location.assign(`${apiUrl}auth/login`);
-    // }
-
     if (this.state.category !== 'all') {
       tasks = tasks.filter(el => {
         return el.category === this.state.category;
@@ -82,7 +90,7 @@ class Dashboard extends Component {
     return (
       <main className={'dashboard'}>
         <Categories selected={this.state.category}
-          categories={this.state.categories}
+          categories={this.props.user.groups}
           selectCategory={this.selectCategory}/>
         <div>
           <h2>
@@ -102,7 +110,7 @@ class Dashboard extends Component {
 function mapStateToProps(state) {
   return {
     tasks: state.tasks.tasks || [],
-    user: state.users.user
+    user: state.users.user || {}
   }
 }
 

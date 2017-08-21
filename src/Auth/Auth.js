@@ -14,6 +14,8 @@ class Auth {
       } else {
         return false
       }
+   }).catch(error => {
+     return false
    })
   }
 

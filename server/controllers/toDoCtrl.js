@@ -36,7 +36,10 @@ module.exports = {
 
   addCategory(req, res) {
     console.log('adding category', req.body);
-    User.findByIdAndUpdate(req.user._id, {'$push': {'groups': req.body}}, (err, user) => {
+
+    User.findOneAndUpdate({_id: req.user._id}, {$push: {groups: req.body.category}}, (err, user) => {
+      console.log('user', user);
+      console.log('error', err);
       if (err) return res.status(500).send(err);
       res.status(200).send();
     })

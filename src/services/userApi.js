@@ -12,6 +12,7 @@ export function getUser() {
     return response.data;
   }).catch(err => {
     console.log(err);
+    return err
   })
   store.dispatch( dispatchGetUser(promise) )
 }

@@ -11,9 +11,10 @@ import Dashboard from './components/view/dashboard';
 import Navbar from './components/command/navbar';
 import Footer from './components/command/footer';
 import Notification from './components/task/notification';
+import Login from './Auth/Login';
 
 import { snooze, editTask } from './services/taskApi';
-import apiUrl from './services/apiUrl';
+import apiUrl, { authUrl } from './services/apiUrl';
 const auth = new Auth();
 
 
@@ -36,7 +37,7 @@ class App extends Component {
 
   snooze(toDo) {
     for(var i = 0; i < this.state.notifications.length; i++) {
-      if (this.state.notifications.toDo._id = toDo._id) {
+      if (this.state.notifications.toDo._id === toDo._id) {
         this.setState({
           notifications: [...this.state.notifications.slice(0, i), ...this.state.notifications.slice(i+1)]
         })
@@ -47,7 +48,7 @@ class App extends Component {
 
   start(toDo) {
     for(var i = 0; i < this.state.notifications.length; i++) {
-      if (this.state.notifications.toDo._id = toDo._id) {
+      if (this.state.notifications.toDo._id === toDo._id) {
         this.setState({
           notifications: [...this.state.notifications.slice(0, i), ...this.state.notifications.slice(i+1)]
         })
@@ -62,31 +63,23 @@ class App extends Component {
         <Notification snooze={this.snooze} start={this.start} toDo={notification}/>
       )
     })
+    var stopPage;
     if (notifications.length > 0) {
-      var stopPage = {overflow: 'hidden'};
+      stopPage = {overflow: 'hidden'};
     } else {
-      var stopPage = {};
+      stopPage = {};
     }
     return (
       <div className="page-content" style={stopPage}>
         <Navbar auth={auth}/>
             <Route exact path="/" render={(props) => <Home auth={auth} {...props}/>}/>
-             <Route exact path="/profile" render={(props) => {
-              auth.isAuthenticated().then(response => {
-                  console.log('response', response);
-                  return (
-                    <Profile auth={auth} {...props}/>
-                  )
-                }).catch(response => {
-                  console.log('catch response', response);
-                  window.location.assign(`${apiUrl}auth/login`)
-                })
-              }
-            } />
-            {/*<Route exact path="/profile" render={props => (
-              <Profile auth={auth} {...props}/>
-            )}/> */}
-            <Route exact path="/dashboard" render={(props) => <Dashboard auth={auth} {...props}/> } />
+             <Route exact path="/profile" render={(props) => (
+                      <Profile auth={auth} {...props}/>
+                    )}
+             />
+            <Route exact path="/dashboard" render={(props) => (
+                     <Dashboard auth={auth} {...props}/>
+                   )} />
         <Footer/>
         {notifications}
       </div>
