@@ -29,7 +29,7 @@ class Dashboard extends Component {
 
   componentWillMount() {
     this.props.auth.isAuthenticated().then(response => {
-      if (typeof window !== 'undefined') {
+      if (typeof window !== 'undefined' && !response) {
            window.location.href = `${authUrl}login`;
       }
     })
@@ -47,17 +47,17 @@ class Dashboard extends Component {
       var hour = getLocalHour();
       if (hour > 3 && hour < 12) {
         this.setState({
-          greeting: 'Good Morning, ',
+          greeting: 'Good Morning',
           greetingIcon: 'fa-sun-o'
         })
       } else if (hour > 12 && hour < 17) {
         this.setState({
-          greeting: 'Good Afternoon, ',
+          greeting: 'Good Afternoon',
           greetingIcon: 'fa-sun-o'
         })
       } else {
         this.setState({
-          greeting: 'Good Evening, ',
+          greeting: 'Good Evening',
           greetingIcon: 'fa-moon-o'
         })
       }
@@ -90,12 +90,12 @@ class Dashboard extends Component {
     return (
       <main className={'dashboard'}>
         <Categories selected={this.state.category}
-          categories={this.props.user.groups}
+          categories={createCategories(this.props.user.groups || [], this.props.tasks)}
           selectCategory={this.selectCategory}/>
         <div>
           <h2>
             <i className={`fa ${this.state.greetingIcon}`}></i>
-            {user? this.state.greeting + user.display_name : ''}
+            {user.display_name ? `${this.state.greeting}, ${user.display_name}` : this.state.greeting}
           </h2>
           <h3>Add a Task</h3>
           <AddTask category={ this.state.category }/>

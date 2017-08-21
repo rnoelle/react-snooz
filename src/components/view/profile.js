@@ -22,7 +22,7 @@ class Profile extends Component {
 
   componentWillMount() {
     this.props.auth.isAuthenticated().then(response => {
-      if (typeof window !== 'undefined') {
+      if (typeof window !== 'undefined' && !response) {
            window.location.href = `${authUrl}login`;
       }
     })

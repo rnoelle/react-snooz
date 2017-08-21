@@ -40,6 +40,7 @@ class Categories extends Component {
     var { selected, categories, selectCategory } = this.props;
     if (categories) {
       var list = categories.map((el, i) => {
+        el.name = el.name || '';
         return (
           <li className={`${selected === el.name
             ? 'active'

@@ -13,7 +13,7 @@ export function createCategories(categoriesList, tasks) {
   })
   tasks.forEach(el => {
       var category = categories.filter(cat => {
-        return cat.name === el.category
+        return cat === el.category
       })[0];
       if (category) {
         category.numTasks++
