@@ -31,6 +31,14 @@ module.exports = {
     } else {
       res.status(401).send();
     }
+  },
+
+  editUser(req, res) {
+    console.log('editing', req.body);
+    User.findOneAndUpdate({_id: req.user._id}, req.body, (err, user) => {
+      if (err) res.status(500).send(err);
+      res.status(200).send();
+    })
   }
 
 }

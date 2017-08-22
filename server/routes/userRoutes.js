@@ -46,4 +46,6 @@ module.exports = app => {
     }
   })
 
+  app.patch('/api/user', userCtrl.editUser);
+
 }

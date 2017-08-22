@@ -8,7 +8,7 @@ import Categories from '../command/categories';
 import { getUser } from '../../services/userApi';
 import { getTasks } from '../../services/taskApi';
 import { getLocalHour } from '../../services/time';
-import { createCategories } from '../../services/sortTasks';
+import { createCategories, sortUnfinishedTasks } from '../../services/sortTasks';
 
 import apiUrl, { authUrl } from '../../services/apiUrl';
 
@@ -33,14 +33,10 @@ class Dashboard extends Component {
            window.location.href = `${authUrl}login`;
       }
     })
-    if (!this.props.user.display_name) {
-      getUser((err, profile) => {
-      });
-    }
   }
 
   componentDidMount() {
-    if (!this.props.user) {
+    if (!this.props.user.display_name) {
       getUser();
     }
       getTasks();
@@ -83,7 +79,11 @@ class Dashboard extends Component {
 
     if (this.state.category !== 'all') {
       tasks = tasks.filter(el => {
-        return el.category === this.state.category;
+        return el.category === this.state.category && !el.finished;
+      })
+    } else {
+      tasks = tasks.filter(el => {
+        return !el.finished;
       })
     }
 

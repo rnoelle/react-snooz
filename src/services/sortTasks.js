@@ -29,9 +29,15 @@ export function createCategories(categoriesList, tasks) {
 export function numFinishedTasks(tasks) {
   var finishedTasks = 0;
   tasks.forEach(el => {
-    if (el.completed) {
+    if (el.finished) {
       finishedTasks++;
     }
   })
   return finishedTasks;
+}
+
+export function sortUnfinishedTasks(tasks) {
+  return tasks.filter(task => {
+    return !task.finished;
+  })
 }

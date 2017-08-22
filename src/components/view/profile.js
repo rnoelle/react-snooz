@@ -3,6 +3,7 @@ import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getUser, editUser } from '../../services/userApi';
+import { getTasks } from '../../services/taskApi';
 import { numFinishedTasks } from '../../services/sortTasks';
 import { authUrl } from '../../services/apiUrl';
 
@@ -30,6 +31,10 @@ class Profile extends Component {
       getUser((err, profile) => {
       });
     }
+  }
+
+  componentDidMount() {
+    getTasks()
   }
 
   toggleEditing(property) {
@@ -85,6 +90,7 @@ class Profile extends Component {
   }
 }
 function mapStateToProps({ users, tasks }) {
+  console.log(tasks);
   return {
     user: users.user || {},
     tasks: tasks.tasks

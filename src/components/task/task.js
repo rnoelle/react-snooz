@@ -38,7 +38,7 @@ class Task extends Component {
       editing: false,
       userInput: ''
     })
-    editTask(this.props.task.id, newTask);
+    editTask(this.props.task._id, newTask);
   }
 
   removeTask() {
@@ -46,7 +46,7 @@ class Task extends Component {
       class: 'finished-task'
     })
     setTimeout(() => {
-      this.props.removeTask(this.props.task.id);
+      this.props.removeTask(this.props.task._id);
     }, 500)
   }
 

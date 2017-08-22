@@ -35,11 +35,17 @@ module.exports = {
   },
 
   addCategory(req, res) {
-    console.log('adding category', req.body);
-
     User.findOneAndUpdate({_id: req.user._id}, {$push: {groups: req.body.category}}, (err, user) => {
       console.log('user', user);
       console.log('error', err);
+      if (err) return res.status(500).send(err);
+      res.status(200).send();
+    })
+  },
+
+  finishToDo(req, res) {
+    console.log('finishing', req.body, req.params);
+    ToDo.findByIdAndUpdate(req.params.id, {finished: new Date()}, (err, toDo) => {
       if (err) return res.status(500).send(err);
       res.status(200).send();
     })
