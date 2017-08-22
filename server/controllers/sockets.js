@@ -19,10 +19,16 @@ module.exports = (app, store) => {
   }))
 
   io.on('connection', socket => {
-    socket.emit('news', 'socket connected');
+    socket.emit('news', {message:'socket connected'});
     notifications.checkTasksOnInterval(socket);
+    socket.on('error', e => {
+      console.log('socket error', e);
+    })
   })
 
+  io.on('disconnect', () => {
+    console.log('socket disconnected');
+  })
 
   function onAuthorizeSuccess(data, accept) {
     console.log('authorized');

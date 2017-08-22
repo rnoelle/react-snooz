@@ -26,6 +26,7 @@ class App extends Component {
     }
     this.snooze = this.snooze.bind(this);
     this.start = this.start.bind(this);
+    this.addNotification = this.addNotification.bind(this);
     sockets(this.addNotification);
   }
 
@@ -37,7 +38,7 @@ class App extends Component {
 
   snooze(toDo) {
     for(var i = 0; i < this.state.notifications.length; i++) {
-      if (this.state.notifications.toDo._id === toDo._id) {
+      if (this.state.notifications[i]._id === toDo._id) {
         this.setState({
           notifications: [...this.state.notifications.slice(0, i), ...this.state.notifications.slice(i+1)]
         })
@@ -48,13 +49,13 @@ class App extends Component {
 
   start(toDo) {
     for(var i = 0; i < this.state.notifications.length; i++) {
-      if (this.state.notifications.toDo._id === toDo._id) {
+      if (this.state.notifications[i]._id === toDo._id) {
         this.setState({
           notifications: [...this.state.notifications.slice(0, i), ...this.state.notifications.slice(i+1)]
         })
       }
     }
-    editTask(toDo.id, {started: new Date()});
+    editTask(toDo._id, {started: new Date()});
   }
 
   render() {
@@ -81,7 +82,9 @@ class App extends Component {
                      <Dashboard auth={auth} {...props}/>
                    )} />
         <Footer/>
-        {notifications}
+        <div className="notifications-container">
+          {notifications}
+        </div>
       </div>
     );
   }

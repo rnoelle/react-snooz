@@ -12,5 +12,4 @@ export function postCategory(category) {
     console.log(err);
     return err;
   })
-
 }

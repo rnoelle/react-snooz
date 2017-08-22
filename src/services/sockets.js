@@ -1,14 +1,12 @@
 import apiUrl, { socketUrl } from './apiUrl';
-import io from 'socket.io-client';
+const io = require('socket.io-client');
 
 export default function startSockets(addNotification) {
-  const socket = io(apiUrl);
+  const socket = io();
   var notifications = [];
-  socket.on('news', data => {
-    console.log(data);
 
-  })
   socket.on('notification', toDo => {
+    console.log('notified');
     addNotification(toDo)
   })
 

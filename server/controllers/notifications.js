@@ -5,19 +5,27 @@ const CronJob = require('cron').CronJob,
 module.exports = {
   checkTasksOnInterval(socket) {
     var user = socket.request.user;
-    console.log('socket user', socket.request.user);
-    var job = new CronJob('15 * * * * *', () => {
-      console.log('check');
-      ToDo.find({
-        _user: user._id,
-        finished: null,
-        notify: {
-          $lt: new Date().now()
-        }
-      }).exec((err, todos) => {
-        todos.map(todo => {
-          socket.emit('notification', todo);
-        })
+    var job = new CronJob('*/15 * * * * *', () => {
+        this.checkTasks(socket)
+      }, () => {}, true)
+    socket.on('disconnect', () => {
+      console.log('disconnecting');
+      job.stop();
+    })
+  },
+
+  checkTasks(socket) {
+    var user = socket.request.user;
+    ToDo.find({
+      _user: user._id,
+      finished: null,
+      notify: {
+        $lt: new Date()
+      }
+    }).exec((err, todos) => {
+      console.log('how many todos', todos.length);
+      todos.map(todo => {
+        socket.emit('notification', todo);
       })
     })
   },

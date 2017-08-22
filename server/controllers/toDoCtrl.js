@@ -26,10 +26,33 @@ module.exports = {
     })
   },
 
+  editToDo(req, res) {
+      ToDo.findOne({_id: req.params.id}, (err, toDo) => {
+        if (err) return res.status(500).send(err);
+        if (req.body.started) {
+          toDo.set({
+            started: new Date(),
+            notify: new Date(Date.now() + 7200000) //wait 2 hours before notififying again
+          });
+          toDo.save();
+          res.status(200).send();
+        } else {
+          toDo.set(req.body);
+          toDo.save();
+          res.status(200).send();
+        }
+      })
+  },
+
   snoozeToDo(req, res) {
-    var newNotifyTime = notifications.findNewNotifyTime(toDo, req);
-    ToDo.findByIdAndUpdate(req.params.id, {notify: newNotifyTime}, (err, toDo) => {
+    ToDo.findOne({_id: req.params.id}, (err, toDo) => {
       if (err) return res.status(500).send(err);
+      var newNotifyTime = notifications.findNewNotifyTime(toDo, req);
+      toDo.set({notify: newNotifyTime,
+                $push: {
+                  snoozes: new Date()
+                }});
+      toDo.save();
       res.status(200).send(toDo);
     })
   },

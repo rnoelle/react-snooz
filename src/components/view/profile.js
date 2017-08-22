@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { getUser, editUser } from '../../services/userApi';
 import { getTasks } from '../../services/taskApi';
-import { numFinishedTasks } from '../../services/sortTasks';
+import { numSnoozesAndFinishedTasks } from '../../services/sortTasks';
 import { authUrl } from '../../services/apiUrl';
 
 require('../../styles/profile.css');
@@ -63,8 +63,12 @@ class Profile extends Component {
     var {
       user
     } = this.props;
-    var finishedTasks = numFinishedTasks(this.props.tasks || []);
-    var emailElement;
+    var snoozesAndFinishedTasks = numSnoozesAndFinishedTasks(this.props.tasks || [])
+      , snoozes = snoozesAndFinishedTasks[0]
+      , finishedTasks = snoozesAndFinishedTasks[1]
+      , emailElement
+      ;
+
     if (user.email) {
       !this.state.editingEmail ? emailElement = <h4 onClick={() => this.toggleEditing('Email')}>{user.email}</h4>
       : emailElement = (<form onSubmit={(e) => this.handleSubmit(e, 'Email')}>
@@ -85,6 +89,8 @@ class Profile extends Component {
         <br/>
         <h3>Finished Tasks</h3>
         <h3 className="text-em-orange">{finishedTasks}</h3>
+        <h3>Total Snoozes</h3>
+        <h3 className="text-em-orange">{snoozes}</h3>
       </main>
     )
   }

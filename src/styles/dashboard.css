@@ -45,6 +45,7 @@ form input[type='submit']:hover {
 }
 .todoList {
   margin-top: .5rem;
+  height: 25rem;
 }
 .todoList li {
   padding: .75rem;
@@ -76,6 +77,30 @@ form input[type='submit']:hover {
   transform: translate(200px, 0);
   opacity: 0;
   position: absolute;
+}
+.taskList .todoList-page-numbers {
+  display: flex;
+  justify-content: center;
+}
+.taskList .todoList-page-numbers li {
+  cursor: pointer;
+  color: #aaa;
+  margin: .5rem;
+}
+.taskList .todoList-page-numbers li.active {
+  color: #FF6B35;
+}
+.taskList.todoList-page-numbers li.active {
+  color: #FF6B35;
+}
+.taskList .todoList-page-numbers li:hover {
+  color: #bbb;
+}
+.taskList .todoList-page-numbers li.active:hover {
+  color: #FF6B35;
+}
+.taskList .todoList-page-numbers li.disabledPage, .todoList .todoList-page-numbers li.disabledPage:hover {
+  color: #ededed;
 }
 
 aside.categories {

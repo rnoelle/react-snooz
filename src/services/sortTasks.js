@@ -41,3 +41,26 @@ export function sortUnfinishedTasks(tasks) {
     return !task.finished;
   })
 }
+
+export function numSnoozes(tasks) {
+  var snoozes = 0;
+  tasks.forEach(el => {
+    snoozes += el.snoozes.length;
+  });
+  return snoozes;
+}
+
+export function numSnoozesAndFinishedTasks(tasks) {
+  var finishedTasks = 0
+    , snoozes = 0
+    ;
+
+    tasks.forEach(el => {
+      snoozes += el.snoozes.length;
+      if (el.finished) {
+        finishedTasks++
+      }
+    })
+
+    return [snoozes, finishedTasks];
+}

@@ -22,7 +22,6 @@ export default class AddTodo extends Component {
   handleSubmit(e) {
     e.preventDefault();
     let newTask = {
-      user_id: 23,
       text: this.state.textInput,
       category: this.props.category
     }
