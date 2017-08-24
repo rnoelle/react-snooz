@@ -23,7 +23,6 @@ module.exports = {
         $lt: new Date()
       }
     }).exec((err, todos) => {
-      console.log('how many todos', todos.length);
       todos.map(todo => {
         socket.emit('notification', todo);
       })

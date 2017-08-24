@@ -33,12 +33,12 @@ class Dashboard extends Component {
            window.location.href = `${authUrl}login`;
       }
     })
-  }
-
-  componentDidMount() {
     if (!this.props.user.display_name) {
       getUser();
     }
+  }
+
+  componentDidMount() {
       getTasks();
       var hour = getLocalHour();
       if (hour > 3 && hour < 12) {
