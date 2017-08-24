@@ -1,16 +1,19 @@
 export function createCategories(categoriesList, tasks) {
-  var categories = [];
-
   if (categoriesList.length === 0) {
     return [];
   }
 
+  var categories = [];
+  var id = 1;
+
   categoriesList.forEach(el => {
     categories.push({
+      id: id,
       name: el,
       numTasks: 0
     })
-  })
+    id++;
+  });
   tasks.forEach(el => {
       var category = categories.filter(cat => {
         return cat === el.category

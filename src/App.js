@@ -31,6 +31,11 @@ class App extends Component {
   }
 
   addNotification(toDo) {
+    this.state.notifications.forEach(el => {
+      if (el._id === toDo._id) {
+        return;
+      }
+    })
     this.setState({
       notifications: [...this.state.notifications, toDo]
     })

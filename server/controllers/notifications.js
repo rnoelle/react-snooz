@@ -23,6 +23,7 @@ module.exports = {
         $lt: new Date()
       }
     }).exec((err, todos) => {
+      todos = todos || [];
       todos.map(todo => {
         socket.emit('notification', todo);
       })
