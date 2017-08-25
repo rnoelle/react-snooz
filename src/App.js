@@ -31,11 +31,11 @@ class App extends Component {
   }
 
   addNotification(toDo) {
-    this.state.notifications.forEach(el => {
-      if (el._id === toDo._id) {
+    for (let i = 0; i < this.state.notifications.length; i++) {
+      if (this.state.notifications[i]._id === toDo._id) {
         return;
       }
-    })
+    }
     this.setState({
       notifications: [...this.state.notifications, toDo]
     })
@@ -61,6 +61,15 @@ class App extends Component {
       }
     }
     editTask(toDo._id, {started: new Date()});
+  }
+
+  clearNotifications() {
+    this.state.notifications.forEach(notification => {
+      snooze(notification)
+    });
+    this.setState({
+      notifications: []
+    })
   }
 
   render() {

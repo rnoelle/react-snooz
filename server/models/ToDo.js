@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const toDoSchema = Schema({
   text  : String,
   date_created : {type: Date},
-  snoozes : [{type: Date}],
+  snoozes : [Date],
   notify : {type: Date},
   started : {type: Date},
   finished : {type: Date},

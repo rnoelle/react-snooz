@@ -1,9 +1,10 @@
 import React from 'react';
 require('../../styles/notification.css')
 
-function Notification( { toDo, snooze, start } ) {
+function Notification( { toDo, snooze, start, clearNotifications } ) {
+
   return (
-    <div className="notification-backdrop">
+    <div className="notification-backdrop" onClick={clearNotifications}>
       <div>
         <h1>{toDo.text}</h1>
         <h3>You've snoozed this task

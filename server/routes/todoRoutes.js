@@ -10,7 +10,10 @@ module.exports = app => {
   app.post('/api/categories', toDoCtrl.addCategory);
   //Patch
   app.patch('/api/tasks/:id', toDoCtrl.editToDo);
+  //Put
+  app.put('/api/categories', toDoCtrl.editCategory);
   //Delete
   app.delete('/api/tasks/:id', toDoCtrl.finishToDo);
+  app.delete('/api/categories/:category', toDoCtrl.deleteCategory);
 
 }

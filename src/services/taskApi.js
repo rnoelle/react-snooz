@@ -15,6 +15,7 @@ export function getTasks() {
 }
 
 export function postTask(task) {
+  task.category = task.category.toLowerCase();
   return axios.post(apiUrl+'tasks', task).then(response => {
     getTasks();
   })

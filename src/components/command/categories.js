@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Category from '../pres/category';
 
 import { postCategory, editCategory, deleteCategory } from '../../services/categoriesApi';
+import { titleCase } from '../../services/sortTasks';
 require('../../styles/notification.css')
 
 
@@ -47,24 +48,29 @@ class Categories extends Component {
   }
 
 
-  toggleEditing(id) {
+  toggleEditing(id, name) {
     if (this.state.editingCategory) {
       this.setState({
-        editingCategory: null
+        editingCategory: null,
+        userInput: ''
       })
       return;
     }
     this.setState({
       editingCategory: id,
-      menuOpen: null,
-
+      userInput: titleCase(name)
     })
   }
 
   toggleDeleting(id) {
+    if (this.state.deletingCategory) {
+      this.setState({
+        deletingCategory: null
+      })
+      return;
+    }
     this.setState({
-      deletingCategory: id,
-      menuOpen: null
+      deletingCategory: id
     })
   }
 
@@ -74,16 +80,27 @@ class Categories extends Component {
     var category = this.props.categories.filter(el => {
       return el.id === this.state.editingCategory;
     })[0];
-    editCategory(category.name, this.state.userInput)
+
+    editCategory(category.name, this.state.userInput);
+    this.setState({
+      editingCategory: null,
+      userInput: ''
+    })
   }
 
   deleteCategory() {
-    deleteCategory(this.state.deletingCategory);
+    var category = this.props.categories.filter(el => {
+      return el.id === this.state.deletingCategory;
+    })[0];
+
+    deleteCategory(category.name);
+    this.setState({
+      deletingCategory: null
+    })
   }
 
   render() {
     var { selected, categories, selectCategory } = this.props;
-    console.log(categories, 'categories');
     if (categories) {
       var list = categories.map((el, i) => {
         el.name = el.name || '';
@@ -98,7 +115,7 @@ class Categories extends Component {
             handleChange={this.handleChange}
             userInput={this.state.userInput}
             handleSubmit={this.editCategory}
-            editing={el.id === this.state.editingCategory ? true : false}
+            editing={el.id === this.state.editingCategory ? true : false} />
         )
       })
     }
@@ -109,7 +126,7 @@ class Categories extends Component {
         <ul>
           <li className={`${selected === 'all'
             ? 'active'
-            : ''}`} onClick={() => selectCategory('all')}>
+            : ''}`} >
             All</li>
           {list || ''}
         </ul>
@@ -140,12 +157,12 @@ class Categories extends Component {
           { //delete modal
             this.state.deletingCategory ?
             (
-              <div className="notification-backdrop">
+              <div className="notification-backdrop" onClick={this.toggleDeleting}>
                 <div>
                   <h3>Are you sure you want to delete this category?</h3>
                   <div className="notification-buttons">
-                    <button className="">Delete</button>
-                    <button className="button-green">Cancel</button>
+                    <button onClick={this.deleteCategory}>Delete</button>
+                    <button className="button-green" onClick={this.toggleDeleting}>Cancel</button>
                   </div>
                 </div>
               </div>

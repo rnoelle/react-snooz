@@ -13,7 +13,7 @@
   background: rgba(0, 0, 0, 0.2);
 }
 
-.notification-backdrop > div:last-child {
+.notification-backdrop:last-child > div {
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
 }
 
