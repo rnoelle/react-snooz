@@ -8,7 +8,6 @@ import {
 
 export function getUser() {
   let promise = axios.get(apiUrl + 'user').then(response => {
-    console.log('incoming user', response);
     return response.data;
   }).catch(err => {
     console.log(err);
@@ -19,7 +18,6 @@ export function getUser() {
 
 export function editUser(property, edit) {
   axios.patch(`${apiUrl}user`, {[property.toLowerCase()]: edit}).then(response => {
-    console.log(response);
     getUser();
   })
 }

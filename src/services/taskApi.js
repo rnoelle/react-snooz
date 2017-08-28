@@ -39,7 +39,6 @@ export function editTask(id, update) {
 
 export function snooze(toDo) {
   return axios.post(`${apiUrl}snooze/${toDo._id}`).then(response => {
-    console.log(response);
     return response;
   })
 }

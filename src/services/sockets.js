@@ -6,7 +6,6 @@ export default function startSockets(addNotification) {
   var notifications = [];
 
   socket.on('notification', toDo => {
-    console.log('notified');
     addNotification(toDo)
   })
 

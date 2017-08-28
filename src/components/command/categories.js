@@ -126,7 +126,8 @@ class Categories extends Component {
         <ul>
           <li className={`${selected === 'all'
             ? 'active'
-            : ''}`} >
+            : ''}`}
+            onClick={() => selectCategory('all')}>
             All</li>
           {list || ''}
         </ul>
