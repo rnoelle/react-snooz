@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 module.exports = {
 
   getToDos(req, res) {
+    if (!req.user) return res.status(403).redirect('/');
     ToDo.find({_user: req.user._id}).exec((err, toDos) => {
       if (err) return res.status(500).send(err);
       res.status(200).send(toDos);

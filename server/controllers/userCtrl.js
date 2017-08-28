@@ -8,6 +8,7 @@ module.exports = {
       if (err) {
         return console.log(err);
       }
+      console.log('found user?', user);
       if (user === null) {
         let newUser = {
           auth0Id: profile._json.sub,
@@ -16,6 +17,7 @@ module.exports = {
           groups: []
         }
         User.create(newUser, (err, newUser) => {
+          console.log('new user', newUser);
           done(null, user)
         })
       } else {

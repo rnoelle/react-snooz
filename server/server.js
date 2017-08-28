@@ -38,6 +38,7 @@ app.use(session({
 
 const userCtrl = require('./controllers/userCtrl');
 const strategy = new Auth0Strategy(config.auth, (accessToken, refreshToken, extraParams, profile, done) => {
+    console.log(profile);
     userCtrl.checkForUser(profile, done)
 })
 

@@ -27,8 +27,7 @@ module.exports = app => {
     res.redirect('/');
   });
 
-  app.get(
-    '/callback',
+  app.get('/callback',
     passport.authenticate('auth0', {
       failureRedirect: '/',
       successRedirect: '/dashboard'
