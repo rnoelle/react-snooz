@@ -24,9 +24,9 @@ db.once('open', function() {
 });
 var store = new MongoStore({mongooseConnection: db});
 
+app.use(express.static(path.resolve(__dirname, '..', 'build')));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
 app.use(session({
   secret: config.sessionSecret,
@@ -38,11 +38,13 @@ app.use(session({
 
 const userCtrl = require('./controllers/userCtrl');
 const strategy = new Auth0Strategy(config.auth, (accessToken, refreshToken, extraParams, profile, done) => {
-    console.log(profile);
     userCtrl.checkForUser(profile, done)
 })
 
+app.use(passport.initialize());
+app.use(passport.session());
 passport.use(strategy);
+
 
 passport.serializeUser(function(user, done) {
   done(null, user._id);
@@ -54,8 +56,6 @@ passport.deserializeUser(function(id, done) {
   })
 });
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.set('passport', passport);
 

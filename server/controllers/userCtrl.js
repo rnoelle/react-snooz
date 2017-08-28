@@ -8,7 +8,6 @@ module.exports = {
       if (err) {
         return console.log(err);
       }
-      console.log('found user?', user);
       if (user === null) {
         let newUser = {
           auth0Id: profile._json.sub,
@@ -21,6 +20,7 @@ module.exports = {
           done(null, user)
         })
       } else {
+        console.log('found user');
         done(null, user);
       }
 

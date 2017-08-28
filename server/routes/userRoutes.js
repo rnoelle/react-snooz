@@ -33,6 +33,8 @@ module.exports = app => {
       successRedirect: '/dashboard'
     }),
     function(req, res) {
+      console.log('redirecting');
+      console.log('logged in user', req.user);
       res.redirect(req.session.returnTo || '/dashboard');
     }
   );
@@ -41,6 +43,7 @@ module.exports = app => {
     if (req.user) {
       res.status(200).send(req.user);
     } else {
+      console.log('no user');
       res.status(401).send(req.session);
     }
   })
